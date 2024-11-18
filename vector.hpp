@@ -2,9 +2,7 @@
 #define VECTOR_HPP
 
 //Constructors and Destructor
-atlas3::Vector::Vector() : m_data{0} , m_size{0} , m_capacity{0} {
-    std::cout<<"default ctor\n";
-};
+atlas3::Vector::Vector() : m_data{0} , m_size{0} , m_capacity{0} {};
 
 atlas3::Vector::Vector(size_type count) {
     m_data = new value_type[count];
@@ -31,12 +29,10 @@ atlas3::Vector::Vector(std::initializer_list<atlas3::Vector::value_type> init){
 }
 
 atlas3::Vector::Vector(const Vector& other){
-    std::cout<<"copy ctor\n";
     this->copy_from(other);
 }
 
 atlas3::Vector::Vector(Vector&& other) noexcept{
-    std::cout<<"move ctor\n";
     this->move_from(std::move(other));
 }
 
@@ -105,7 +101,6 @@ atlas3::Vector::pointer atlas3::Vector::data() noexcept{
 
 // Assignment Operators
 atlas3::Vector& atlas3::Vector::operator=(const Vector& other){
-    std::cout<<"copy op=\n";
     if(*this == other){
         return *this;
     }
@@ -115,7 +110,6 @@ atlas3::Vector& atlas3::Vector::operator=(const Vector& other){
 }
 
 atlas3::Vector& atlas3::Vector::operator=(Vector&& other) noexcept{
-    std::cout<<"move op=\n";
     if(*this == other){
         return *this;
     }
@@ -146,7 +140,6 @@ void atlas3::Vector::clear() noexcept{
 
 //use member types
 void atlas3::Vector::push_back(const int& value){
-    std::cout<<"&\n";
     if(m_capacity == m_size){
         this->reallocate(m_capacity);
     }
@@ -156,7 +149,6 @@ void atlas3::Vector::push_back(const int& value){
 
 //here too
 void atlas3::Vector::push_back(int&& value){
-    std::cout<<"&&\n";
     if(m_capacity == m_size){
         this->reallocate(m_capacity);
     }
@@ -357,7 +349,6 @@ void atlas3::Vector::destroy_elements(){
 }
 
 void atlas3::Vector::copy_from(const Vector& other){
-    std::cout<<"copy_from\n";
     m_size = other.m_size;
     m_capacity = other.m_capacity;
     m_data = new value_type[m_capacity];
@@ -367,7 +358,6 @@ void atlas3::Vector::copy_from(const Vector& other){
 }
 
 void atlas3::Vector::move_from(Vector&& other) noexcept{
-    std::cout<<"move_from\n";
     this->destroy_elements();
     m_size = other.m_size;
     m_capacity = other.m_capacity;
