@@ -138,7 +138,6 @@ void atlas3::Vector::clear() noexcept{
     this->destroy_elements();
 }
 
-//use member types
 void atlas3::Vector::push_back(const int& value){
     if(m_capacity == m_size){
         this->reallocate(m_capacity);
@@ -147,7 +146,6 @@ void atlas3::Vector::push_back(const int& value){
     ++m_size;
 }
 
-//here too
 void atlas3::Vector::push_back(int&& value){
     if(m_capacity == m_size){
         this->reallocate(m_capacity);
